@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content= "text/html; charset=UTF-8"/>
+<title>Liste des organisateurs</title>
+</head>
+<body>
+    <h1> Liste des organisateurs</h1>
+    <p><a href="/">Retour à l'accueil</a></p>
+    
+    <div th:if="${param.message}" class="alert alert-success font-weight-bold" style="color: green;">
+        <h2 th:text="${param.message}"></h2>
+    </div>    
+    
+    <div th:if="${message}" class="alert alert-success font-weight-bold" style="color: green;">
+        <h2 th:text="${message}"></h2>
+    </div>    
+
+    <table class="table">
+        <threat>
+            <tr>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>email</th>
+                <th>telephone</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </threat>
+        <tbody>
+            <tr data-th-each="organisateur : ${organisateurs}">
+                <td data-th-text="${organisateur.nom}"></td>
+                <td data-th-text="${organisateur.prenom}"></td>
+                <td data-th-text="${organisateur.email}"></td>
+                <td data-th-text="${organisateur.telephone}"></td>
+                <td><a th:href="@{/organisateur/modifier/{id}(id=${organisateur.id})}">Modifier</a></td>
+                <td><a th:href="@{/organisateur/supprimer/{id}(id=${organisateur.id})}">Supprimer</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

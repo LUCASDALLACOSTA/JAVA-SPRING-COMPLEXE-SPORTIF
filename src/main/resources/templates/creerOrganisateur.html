@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>organisateur création</title>
+</head>
+
+<body> 
+    <div>
+        <h1>Création d'un organisateur</h1>
+        <p><a href="/">Retour à l'accueil</a></p>
+        
+        <form action="#" th:action="@{/organisateur/creer}" th:object="${organisateur}" method="post">
+            <p>Nom: <input type="text" th:field="*{nom}" required/></p>
+            <p>Prenom: <input type="text" th:field="*{prenom}" required/></p>
+            <p>Email: <input type="email" th:field="*{email}" required/></p>
+            <p>Telephone: <input type="text" th:field="*{telephone}" /></p>
+            <p><input type="submit" value="Valider" /></p>
+        </form>
+    </div>
+</body>
+
+</html>

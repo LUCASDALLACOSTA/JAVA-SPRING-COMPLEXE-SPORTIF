@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>séance modification</title>
+</head>
+
+<body>  
+    <div>
+        <h1>modification d'une séance</h1>
+        <p><a href="/seance/liste">Retour à la liste des séances</a></p>
+        
+        <form th:object="${seance}" th:action="@{${'/seance/modifier/' + seance.id}}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" th:field="*{date}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="heureDebut">Heure de début:</label>
+                <input type="time" class="form-control" id="heureDebut" th:field="*{heureDebut}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="heureFin">Heure de fin:</label>
+                <input type="time" class="form-control" id="heureFin" th:field="*{heureFin}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="sport">Sport:</label>
+                <input type="text" class="form-control" id="sport" th:field="*{sport}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="lieu">Lieu:</label>
+                <input type="text" class="form-control" id="lieu" th:field="*{lieu}" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+</body>
+
+</html>

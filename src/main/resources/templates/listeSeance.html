@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Liste des séances</title>
+</head>
+
+<body>
+    <h1> Liste des séances</h1>
+    <p><a href="/">Retour à l'accueil</a></p>
+
+    <div th:if="${param.message}" class="alert alert-success font-weight-bold" style="color: green;">
+        <h2 th:text="${param.message}"></h2>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success font-weight-bold" style="color: green;">
+        <h2 th:text="${message}"></h2>
+    </div>
+
+    <table class="table">
+        <threat>
+            <tr>
+                <th>Sport</th>
+                <th>Date</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Lieu</th>
+                <th>Détails</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </threat>
+        <tbody>
+            <tr data-th-each="seance : ${seances}">
+                <td data-th-text="${seance.sport}"></td>
+                <td data-th-text="${seance.date}"></td>
+                <td data-th-text="${seance.heureDebut}"></td>
+                <td data-th-text="${seance.heureFin}"></td>
+                <td data-th-text="${seance.lieu}"></td>
+                <td><a th:href="@{/seance/{id}/detail/(id=${seance.id})}">Détail</td>
+                <td><a th:href="@{/seance/modifier/{id}(id=${seance.id})}">Modifier</a></td>
+                <td><a th:href="@{/seance/supprimer/{id}(id=${seance.id})}">Supprimer</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un adhérent à la séance</title>
+</head>
+<body>
+<h1>Ajouter un adhérent à la séance</h1>
+<a th:href="@{/seance/{id}/detail(id=${seance.id})}">Retour au détail de la séance</a>
+
+<h2>Adhérents disponibles</h2>
+<form method="post" th:action="@{/seance/{id}/ajoutAdherent/(id=${seance.id})}">
+    <fieldset>
+        <legend>Adhérents disponibles :</legend>
+        <div th:each="adherent : ${ajoutAdherent}">
+            <label>
+                <input type="radio" name="adherentId" th:value="${adherent.id}" th:text="${adherent.nom + ' ' + adherent.prenom}"/>
+            </label>
+        </div>
+    </fieldset> 
+    <br>
+    <input type="submit" value="Ajouter">
+</form>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de la séance</title>
+</head>
+
+<body>
+    <h1>Détails de la séance</h1>
+
+    <div th:if="${param.message}" class="alert alert-success font-weight-bold" style="color: green;">
+        <h2 th:text="${param.message}"></h2>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success font-weight-bold" style="color: green;">
+        <h2 th:text="${message}"></h2>
+    </div>
+
+    <a href="/seance/liste">Liste des séances</a>
+
+    <h2>Informations de la séance</h2>
+    <table>
+        <tr>
+            <td>Date:</td>
+            <td th:text="${seance.date}"></td>
+        </tr>
+        <tr>
+            <td>Heure de début:</td>
+            <td th:text="${seance.heureDebut}"></td>
+        </tr>
+        <tr>
+            <td>Heure de fin:</td>
+            <td th:text="${seance.heureFin}"></td>
+        </tr>
+        <tr>
+            <td>Sport:</td>
+            <td th:text="${seance.sport}"></td>
+        </tr>
+        <tr>
+            <td>Lieu:</td>
+            <td th:text="${seance.lieu}"></td>
+        </tr>
+    </table>
+
+    <h2>Organisateur de la séance</h2>
+    <a th:href="@{/seance/{seanceId}/changerOrganisateur(seanceId=${seanceId})}">Changer d'organisateur</a>
+    <table>
+        <tr>
+            <td>Nom:</td>
+            <td th:text="${seance.organisateur.nom}"></td>
+        </tr>
+        <tr>
+            <td>Prénom:</td>
+            <td th:text="${seance.organisateur.prenom}"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${seance.organisateur.email}"></td>
+        </tr>
+        <tr>
+            <td>Téléphone:</td>
+            <td th:text="${seance.organisateur.telephone}"></td>
+        </tr>
+    </table>
+
+    <h2>Adhérents inscrits à la séance</h2>
+
+    <a th:href="@{/seance/{seanceId}/ajoutAdherent/(seanceId=${seanceId})}">Ajouter un adhérent</a>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Retirer</th>
+        </tr>
+        <tr th:each="adherent : ${seance.adherents}">
+            <td th:text="${adherent.nom}"></td>
+            <td th:text="${adherent.prenom}"></td>
+            <td th:text="${adherent.email}"></td>
+            <td th:text="${adherent.telephone}"></td>
+            <td><a
+                    th:href="@{/seance/{id}/retirerAdherent/{adherentId}(id=${seance.id}, adherentId=${adherent.id})}">Retirer</a>
+            </td>
+    </table>
+
+
+</body>
+
+</html>
